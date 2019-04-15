@@ -50,6 +50,7 @@ final class StorageDBAL extends StorageBase implements PersisterInterface
         $table = $schemaNew->createTable($this->tableName);
         $table->addColumn('id', Type::INTEGER, ['unsigned' => true, 'autoincrement' => true]);
         $table->addColumn('name', Type::STRING, ['length' => 255]);
+        $table->addColumn('arguments', Type::TEXT, ['notnull' => false, 'length' => 65535]);
         $table->addColumn('status', Type::INTEGER, ['unsigned' => true]);
         $table->addColumn('error', Type::TEXT, ['notnull' => false, 'length' => 65535]);
         $table->addColumn('estimate', Type::INTEGER, ['unsigned' => true, 'notnull' => false]);
@@ -128,6 +129,7 @@ final class StorageDBAL extends StorageBase implements PersisterInterface
     {
         $data = [
             'name'       => $task->getName(),
+            'arguments'  => json_encode($task->getArguments()),
             'status'     => $task->getStatus(),
             'error'      => $task->getError() ? (string) $task->getError() : null,
             'expression' => $task->getExpression(),
@@ -173,6 +175,7 @@ final class StorageDBAL extends StorageBase implements PersisterInterface
 
         $task->setID($data['id']);
         $task->setName($data['name']);
+        $task->setArguments((array) json_decode($data['arguments'] ?: '[]'));
         $task->setExpression($data['expression']);
         $task->setStatus($data['status']);
         $task->setEstimate($data['estimate']);
