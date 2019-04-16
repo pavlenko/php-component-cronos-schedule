@@ -54,7 +54,7 @@ final class StorageFile extends StorageBase
             }
 
             $taskName  = implode(' ', array_slice($parts, \count($fields), 1));
-            $arguments = array_slice($parts, count($tasks) + 1);
+            $arguments = array_slice($parts, count($fields) + 1);
 
             $task = new Task();
             $task->setID($expression . ' ' . $taskName);
