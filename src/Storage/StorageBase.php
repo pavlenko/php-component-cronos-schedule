@@ -27,7 +27,7 @@ abstract class StorageBase implements ProviderInterface
     {
         $tasks = [];
 
-        foreach ($this->load() as $task) {
+        foreach ($this->fetchTasks() as $task) {
             $expr = $this->expressionFactory->create($task->getExpression());
 
             if ($expr->isDue()) {
@@ -37,9 +37,4 @@ abstract class StorageBase implements ProviderInterface
 
         return $tasks;
     }
-
-    /**
-     * @return TaskInterface[]
-     */
-    abstract protected function load(): array;
 }

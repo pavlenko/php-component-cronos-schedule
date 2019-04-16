@@ -25,7 +25,7 @@ final class StorageFiles extends StorageBase
     /**
      * @inheritDoc
      */
-    protected function load(): array
+    public function fetchTasks(): array
     {
         $fields = $this->expressionFactory->getFieldFactories();
         $tasks  = [];

@@ -73,7 +73,7 @@ final class StorageDBAL extends StorageBase implements PersisterInterface
     /**
      * @inheritDoc
      */
-    protected function load(): array
+    public function fetchTasks(): array
     {
         $query = $this->connection->createQueryBuilder();
         $query

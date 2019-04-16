@@ -10,4 +10,9 @@ interface ProviderInterface
      * @return TaskInterface[]
      */
     public function getExecutableTasks(): array;
+
+    /**
+     * @return TaskInterface[]
+     */
+    public function fetchTasks(): array;
 }
