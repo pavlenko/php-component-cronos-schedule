@@ -19,7 +19,7 @@ class StorageBaseTest extends TestCase
 
         $storage
             ->expects(static::once())
-            ->method('load')
+            ->method('fetchTasks')
             ->willReturn([$task]);
 
         $tasks = $storage->getExecutableTasks();
